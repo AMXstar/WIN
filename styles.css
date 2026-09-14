@@ -19,7 +19,7 @@ body {
   color: #2b0055;
 }
 
-/* ====== Header ====== */
+
 header {
   background: transparent;
   padding: 20px 50px;
@@ -52,7 +52,7 @@ header {
   color: #a06cff;
 }
 
-/* ====== Hero Section ====== */
+
 .hero {
   display: flex;
   justify-content: space-between;
@@ -196,7 +196,7 @@ font-size: clamp(48px, 9vw, 110px);
   color: midnightblue;
 }
 
-/* ====== Responsive ====== */
+
 @media (max-width: 768px) {
   .hero {
     flex-direction: column;
@@ -211,7 +211,7 @@ font-size: clamp(48px, 9vw, 110px);
     gap: 15px;
   }
 }
-/* ====== Services Section ====== */
+
 .services {
   padding: 80px 50px;
   background: white;
@@ -382,3 +382,147 @@ html { scroll-behavior: smooth; }
   justify-self: center; 
 }
 
+
+
+
+@media (prefers-reduced-motion: no-preference) {
+
+  .reveal,
+  .reveal-right,
+  .reveal-left,
+  .reveal-zoom,
+  .reveal-icon {
+    opacity: 0;
+    will-change: transform, opacity;
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0s);
+  }
+
+  .reveal {
+    transform: translateY(45px);
+  }
+
+  .reveal-right {
+    transform: translateX(-55px);
+  }
+
+  .reveal-left {
+    transform: translateX(55px);
+  }
+
+  .reveal-zoom {
+    transform: scale(0.82);
+  }
+
+  .reveal-icon {
+    transform: translateY(30px) scale(0.6) rotate(-8deg);
+  }
+
+  .reveal.is-visible,
+  .reveal-right.is-visible,
+  .reveal-left.is-visible,
+  .reveal-zoom.is-visible,
+  .reveal-icon.is-visible {
+    opacity: 1;
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+
+  .services-container .service-card:nth-child(1) { --reveal-delay: 0s; }
+  .services-container .service-card:nth-child(2) { --reveal-delay: 0.12s; }
+  .services-container .service-card:nth-child(3) { --reveal-delay: 0.24s; }
+  .services-container .service-card:nth-child(4) { --reveal-delay: 0.36s; }
+  .services-container .service-card:nth-child(5) { --reveal-delay: 0.48s; }
+  .services-container .service-card:nth-child(6) { --reveal-delay: 0.6s; }
+  .services-container .service-card:nth-child(7) { --reveal-delay: 0.72s; }
+  .services-container .service-card:nth-child(8) { --reveal-delay: 0.84s; }
+  .services-container .service-card:nth-child(9) { --reveal-delay: 0.96s; }
+  .services-container .service-card:nth-child(10) { --reveal-delay: 1.08s; }
+
+  @keyframes gentle-float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .hero-img img {
+    animation: gentle-float 5s ease-in-out infinite;
+  }
+
+  .service-card img {
+    transition: transform 0.35s ease, filter 0.35s ease;
+  }
+
+  .service-card:hover img {
+    transform: translateY(-6px) scale(1.08) rotate(-3deg);
+    filter: drop-shadow(0px 6px 10px rgba(160, 108, 255, 0.35));
+  }
+
+  .logo {
+    animation: logo-pop 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @keyframes logo-pop {
+    from { opacity: 0; transform: scale(0.5) rotate(-15deg); }
+    to   { opacity: 1; transform: scale(1) rotate(0deg); }
+  }
+
+  .navigation li {
+    opacity: 0;
+    animation: nav-drop 0.6s ease forwards;
+  }
+  .navigation li:nth-child(1) { animation-delay: 0.15s; }
+  .navigation li:nth-child(2) { animation-delay: 0.28s; }
+  .navigation li:nth-child(3) { animation-delay: 0.41s; }
+  .navigation li:nth-child(4) { animation-delay: 0.54s; }
+
+  @keyframes nav-drop {
+    from { opacity: 0; transform: translateY(-14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .navigation a {
+    position: relative;
+  }
+  .navigation a::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background: #a06cff;
+    transition: width 0.3s ease;
+  }
+  .navigation a:hover::after {
+    width: 100%;
+  }
+
+  .cv-btn,
+  .btn,
+  .card-btn {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
+  }
+  .cv-btn:hover,
+  .btn:hover,
+  .card-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(160, 108, 255, 0.35);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-right,
+  .reveal-left,
+  .reveal-zoom,
+  .reveal-icon,
+  .navigation li {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+  .hero-img img,
+  .logo {
+    animation: none !important;
+  }
+}
